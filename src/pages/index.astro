@@ -10,9 +10,9 @@ const response = await fetch('https://graphql.datocms.com/', {
     Authorization: `Bearer ${import.meta.env.DATOCMS_API_KEY}`,
   },
   body: JSON.stringify({
-    query: `query testQuery {
+    query: `query homepage {
 		home {
-			title
+			_modelApiKey
 		  }
 		}
       `,
@@ -21,8 +21,6 @@ const response = await fetch('https://graphql.datocms.com/', {
 
 const json = await response.json();
 const data = json.data.home;
-
-console.log(data.title);
 ---
 
 <Layout title="Welcome to Astro.">
@@ -55,7 +53,7 @@ console.log(data.title);
 				</linearGradient>
 			</defs>
 		</svg>
-		<h1>{data.title}</h1>
+		<h1>{data._modelApiKey}</h1>
 		<h1>The Astro Demo Title</h1>
 		<p class="instructions">
 			To get started, open the directory <code>src/pages</code> in your project.<br />
